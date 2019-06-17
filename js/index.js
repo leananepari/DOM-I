@@ -90,25 +90,25 @@ function renderHeaderContent(selector, data) {
 function renderMainContent(selector, data) {
   for (let i = 0; i < selector.children.length; i++) {
     if (selector.children[i].className === 'top-content') {
-        selector.children[i].children[0].children[0].textContent = data["features-h4"]
-        selector.children[i].children[0].children[1].textContent = data["features-content"]
+      selector.children[i].children[0].children[0].textContent = data["features-h4"]
+      selector.children[i].children[0].children[1].textContent = data["features-content"]
   
-        selector.children[i].children[1].children[0].textContent = data["about-h4"]
-        selector.children[i].children[1].children[1].textContent = data["about-content"]
-     } 
-     if (selector.children[i].className === 'middle-img') {
-       selector.children[i].src = data["middle-img-src"];
-     }
-     if (selector.children[i].className === 'bottom-content') {
-       selector.children[i].children[0].children[0].textContent = data["services-h4"];
-       selector.children[i].children[0].children[1].textContent = data["services-content"];
-  
-       selector.children[i].children[1].children[0].textContent = data["product-h4"];
-       selector.children[i].children[1].children[1].textContent = data["product-content"];
-  
-       selector.children[i].children[2].children[0].textContent = data["vision-h4"];
-       selector.children[i].children[2].children[1].textContent = data["vision-content"];
-     }
+      selector.children[i].children[1].children[0].textContent = data["about-h4"]
+      selector.children[i].children[1].children[1].textContent = data["about-content"]
+    } 
+    if (selector.children[i].className === 'middle-img') {
+      selector.children[i].src = data["middle-img-src"];
+    }
+    if (selector.children[i].className === 'bottom-content') {
+      selector.children[i].children[0].children[0].textContent = data["services-h4"];
+      selector.children[i].children[0].children[1].textContent = data["services-content"];
+
+      selector.children[i].children[1].children[0].textContent = data["product-h4"];
+      selector.children[i].children[1].children[1].textContent = data["product-content"];
+
+      selector.children[i].children[2].children[0].textContent = data["vision-h4"];
+      selector.children[i].children[2].children[1].textContent = data["vision-content"];
+    }
   }
 }
 
