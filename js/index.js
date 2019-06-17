@@ -43,9 +43,9 @@ logo.setAttribute('src', siteContent["nav"]["img-src"])
 
 // Selectors
 let nav = document.getElementsByTagName('nav').item(0);
-let headerContent = document.getElementsByClassName('cta').item(0);
-let mainContent = document.getElementsByClassName('main-content').item(0);
-let contact = document.getElementsByClassName('contact').item(0);
+let headerContent = document.querySelector('.cta');
+let mainContent = document.querySelector('.main-content');
+let contact = document.querySelector('.contact');
 let copyright = document.getElementsByTagName('footer').item(0);
 
 // Iterate over the keys calling corresponding functions
@@ -70,10 +70,17 @@ for (let key in siteContent) {
 function renderNav(selector, data) {
   let count = 1;
   for (let i = 0; i < selector.children.length; i++) {
-    selector.children[i].className = 'nav-item-' + count.toString();
     selector.children[i].textContent = data['nav-item-' + count.toString()];
     count++;
   }
+  let first = document.createElement('a');
+  first.prepend('Prepend');
+  selector.prepend(first);
+
+  let last = document.createElement('a');
+  last.prepend('Append');
+  selector.append(last);
+  selector.querySelectorAll('a').forEach(element => { element.style.color = 'seagreen' });
 }
 
 function renderHeaderContent(selector, data) {
@@ -114,8 +121,8 @@ function renderMainContent(selector, data) {
 
 function renderContact(selector, data) {
   let arr = [];
-  for (let key in siteContent.contact) {
-    arr.push(siteContent.contact[key])
+  for (let key in data) {
+    arr.push(data[key])
   }
   for (let i = 0; i < selector.children.length; i++) {
     selector.children[i].innerHTML = arr[i];
