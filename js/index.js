@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": "DOM Is Awesome",
+    "h1": "DOM<br> Is<br> Awesome",
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -86,7 +86,7 @@ function renderNav(selector, data) {
 function renderHeaderContent(selector, data) {
   for (let i = 0; i < selector.children.length; i++) {
     if (selector.children[i].className === 'cta-text') {
-      selector.children[i].children[0].textContent = data.h1;
+      selector.children[i].children[0].innerHTML = data.h1;
       selector.children[i].children[1].textContent = data.button;
     } else if (selector.children[i].id === 'cta-img') {
       selector.children[i].src = "img/header-img.png"
