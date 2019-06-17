@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
+    "address" : "123 Way 456 Street<br>Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -48,16 +48,10 @@ for (let i = 0; i < nav.children.length; i++) {
   nav.children[i].textContent = siteContent.nav['nav-item-' + count.toString()];
   count++;
 }
-// nav.children[0].textContent = "hello"
-// console.log(nav)
 
 let headerContent = document.getElementsByClassName('cta').item(0);
-// console.log(headerContent.children[0]);
-// let h1 = headerContent.children[0];
-// let tag = h1.getElementsByTagName('h1');
-console.log(headerContent, ' HI')
+
 for (let i = 0; i < headerContent.children.length; i++) {
-  // console.log('Child', headerContent.children[i]);
   if (headerContent.children[i].className === 'cta-text') {
     headerContent.children[i].children[0].textContent = siteContent.cta.h1;
     headerContent.children[i].children[1].textContent = siteContent.cta.button;
@@ -65,7 +59,40 @@ for (let i = 0; i < headerContent.children.length; i++) {
     headerContent.children[i].src = "img/header-img.png"
   }
 }
-// tag.textContent = 'hallo'
-// h1.textContent = siteContent.cta.h1;
-// console.log(headerContent.getElementsByTagName('h1').textContent = siteContent.cta.h1)
-// .textContent = siteContent.cta.h1;
+
+let mainContent = document.getElementsByClassName('main-content').item(0);
+
+for (let i = 0; i < mainContent.children.length; i++) {
+  if (mainContent.children[i].className === 'top-content') {
+      mainContent.children[i].children[0].children[0].textContent = siteContent["main-content"]["features-h4"]
+      mainContent.children[i].children[0].children[1].textContent = siteContent["main-content"]["features-content"]
+
+      mainContent.children[i].children[1].children[0].textContent = siteContent["main-content"]["about-h4"]
+      mainContent.children[i].children[1].children[1].textContent = siteContent["main-content"]["about-content"]
+   } 
+   if (mainContent.children[i].className === 'middle-img') {
+     mainContent.children[i].src = siteContent["main-content"]["middle-img-src"];
+   }
+   if (mainContent.children[i].className === 'bottom-content') {
+     mainContent.children[i].children[0].children[0].textContent = siteContent["main-content"]["services-h4"];
+     mainContent.children[i].children[0].children[1].textContent = siteContent["main-content"]["services-content"];
+
+     mainContent.children[i].children[1].children[0].textContent = siteContent["main-content"]["product-h4"];
+     mainContent.children[i].children[1].children[1].textContent = siteContent["main-content"]["product-content"];
+
+     mainContent.children[i].children[2].children[0].textContent = siteContent["main-content"]["vision-h4"];
+     mainContent.children[i].children[2].children[1].textContent = siteContent["main-content"]["vision-content"];
+   }
+}
+
+let contact = document.getElementsByClassName('contact').item(0);
+let arr = [];
+for (let key in siteContent.contact) {
+  arr.push(siteContent.contact[key])
+}
+for (let i = 0; i < contact.children.length; i++) {
+  contact.children[i].innerHTML = arr[i];
+}
+
+let copyright = document.getElementsByTagName('footer').item(0);
+copyright.children[0].textContent = siteContent.footer.copyright
