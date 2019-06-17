@@ -40,3 +40,32 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+let nav = document.getElementsByTagName('nav').item(0);
+let count = 1;
+for (let i = 0; i < nav.children.length; i++) {
+  nav.children[i].className = 'nav-item-' + count.toString();
+  nav.children[i].textContent = siteContent.nav['nav-item-' + count.toString()];
+  count++;
+}
+// nav.children[0].textContent = "hello"
+// console.log(nav)
+
+let headerContent = document.getElementsByClassName('cta').item(0);
+// console.log(headerContent.children[0]);
+// let h1 = headerContent.children[0];
+// let tag = h1.getElementsByTagName('h1');
+console.log(headerContent, ' HI')
+for (let i = 0; i < headerContent.children.length; i++) {
+  // console.log('Child', headerContent.children[i]);
+  if (headerContent.children[i].className === 'cta-text') {
+    headerContent.children[i].children[0].textContent = siteContent.cta.h1;
+    headerContent.children[i].children[1].textContent = siteContent.cta.button;
+  } else if (headerContent.children[i].id === 'cta-img') {
+    headerContent.children[i].src = "img/header-img.png"
+  }
+}
+// tag.textContent = 'hallo'
+// h1.textContent = siteContent.cta.h1;
+// console.log(headerContent.getElementsByTagName('h1').textContent = siteContent.cta.h1)
+// .textContent = siteContent.cta.h1;
