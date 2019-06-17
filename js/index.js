@@ -41,58 +41,87 @@ const siteContent = {
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
+// Selectors
 let nav = document.getElementsByTagName('nav').item(0);
-let count = 1;
-for (let i = 0; i < nav.children.length; i++) {
-  nav.children[i].className = 'nav-item-' + count.toString();
-  nav.children[i].textContent = siteContent.nav['nav-item-' + count.toString()];
-  count++;
-}
-
 let headerContent = document.getElementsByClassName('cta').item(0);
+let mainContent = document.getElementsByClassName('main-content').item(0);
+let contact = document.getElementsByClassName('contact').item(0);
+let copyright = document.getElementsByTagName('footer').item(0);
 
-for (let i = 0; i < headerContent.children.length; i++) {
-  if (headerContent.children[i].className === 'cta-text') {
-    headerContent.children[i].children[0].textContent = siteContent.cta.h1;
-    headerContent.children[i].children[1].textContent = siteContent.cta.button;
-  } else if (headerContent.children[i].id === 'cta-img') {
-    headerContent.children[i].src = "img/header-img.png"
+// Iterate over the keys calling corresponding functions
+for (let key in siteContent) {
+  if (key === 'nav') {
+    renderNav(nav, siteContent[key]);
+  }
+  if (key === 'cta') {
+    renderHeaderContent(headerContent, siteContent[key])
+  }
+  if (key === 'main-content') {
+    renderMainContent(mainContent, siteContent[key])
+  }
+  if (key === 'contact') {
+    renderContact(contact, siteContent[key])
+  }
+  if (key === 'footer') {
+    renderCopyright(copyright, siteContent[key])
   }
 }
 
-let mainContent = document.getElementsByClassName('main-content').item(0);
-
-for (let i = 0; i < mainContent.children.length; i++) {
-  if (mainContent.children[i].className === 'top-content') {
-      mainContent.children[i].children[0].children[0].textContent = siteContent["main-content"]["features-h4"]
-      mainContent.children[i].children[0].children[1].textContent = siteContent["main-content"]["features-content"]
-
-      mainContent.children[i].children[1].children[0].textContent = siteContent["main-content"]["about-h4"]
-      mainContent.children[i].children[1].children[1].textContent = siteContent["main-content"]["about-content"]
-   } 
-   if (mainContent.children[i].className === 'middle-img') {
-     mainContent.children[i].src = siteContent["main-content"]["middle-img-src"];
-   }
-   if (mainContent.children[i].className === 'bottom-content') {
-     mainContent.children[i].children[0].children[0].textContent = siteContent["main-content"]["services-h4"];
-     mainContent.children[i].children[0].children[1].textContent = siteContent["main-content"]["services-content"];
-
-     mainContent.children[i].children[1].children[0].textContent = siteContent["main-content"]["product-h4"];
-     mainContent.children[i].children[1].children[1].textContent = siteContent["main-content"]["product-content"];
-
-     mainContent.children[i].children[2].children[0].textContent = siteContent["main-content"]["vision-h4"];
-     mainContent.children[i].children[2].children[1].textContent = siteContent["main-content"]["vision-content"];
-   }
+function renderNav(selector, data) {
+  let count = 1;
+  for (let i = 0; i < selector.children.length; i++) {
+    selector.children[i].className = 'nav-item-' + count.toString();
+    selector.children[i].textContent = data['nav-item-' + count.toString()];
+    count++;
+  }
 }
 
-let contact = document.getElementsByClassName('contact').item(0);
-let arr = [];
-for (let key in siteContent.contact) {
-  arr.push(siteContent.contact[key])
-}
-for (let i = 0; i < contact.children.length; i++) {
-  contact.children[i].innerHTML = arr[i];
+function renderHeaderContent(selector, data) {
+  for (let i = 0; i < selector.children.length; i++) {
+    if (selector.children[i].className === 'cta-text') {
+      selector.children[i].children[0].textContent = data.h1;
+      selector.children[i].children[1].textContent = data.button;
+    } else if (selector.children[i].id === 'cta-img') {
+      selector.children[i].src = "img/header-img.png"
+    }
+  }
 }
 
-let copyright = document.getElementsByTagName('footer').item(0);
-copyright.children[0].textContent = siteContent.footer.copyright
+function renderMainContent(selector, data) {
+  for (let i = 0; i < selector.children.length; i++) {
+    if (selector.children[i].className === 'top-content') {
+        selector.children[i].children[0].children[0].textContent = data["features-h4"]
+        selector.children[i].children[0].children[1].textContent = data["features-content"]
+  
+        selector.children[i].children[1].children[0].textContent = data["about-h4"]
+        selector.children[i].children[1].children[1].textContent = data["about-content"]
+     } 
+     if (selector.children[i].className === 'middle-img') {
+       selector.children[i].src = data["middle-img-src"];
+     }
+     if (selector.children[i].className === 'bottom-content') {
+       selector.children[i].children[0].children[0].textContent = data["services-h4"];
+       selector.children[i].children[0].children[1].textContent = data["services-content"];
+  
+       selector.children[i].children[1].children[0].textContent = data["product-h4"];
+       selector.children[i].children[1].children[1].textContent = data["product-content"];
+  
+       selector.children[i].children[2].children[0].textContent = data["vision-h4"];
+       selector.children[i].children[2].children[1].textContent = data["vision-content"];
+     }
+  }
+}
+
+function renderContact(selector, data) {
+  let arr = [];
+  for (let key in siteContent.contact) {
+    arr.push(siteContent.contact[key])
+  }
+  for (let i = 0; i < selector.children.length; i++) {
+    selector.children[i].innerHTML = arr[i];
+  }
+}
+
+function renderCopyright(selector, data) {
+  selector.children[0].textContent = data.copyright
+}
