@@ -4,9 +4,14 @@ body {
   align-items: center;
 }
 
+.digits {
+  box-sizing: border-box;
+}
+
 .digit {
   display: inline-block;
   font-size: 80px;
+  box-sizing: border-box;
 }
 
 .redDigit {
