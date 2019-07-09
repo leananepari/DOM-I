@@ -57,3 +57,10 @@ function timer() {
   loop();
 }
 timer();
+
+document.querySelector('button').addEventListener('click', function() {
+  secondTens.innerHTML = 0;
+  secondOnes.innerHTML = 0;
+  document.querySelector('.digits').classList.remove('redDigit')
+  timer();
+})
