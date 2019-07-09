@@ -3,6 +3,7 @@ let secondOnes = document.querySelector('#secondOnes');
 let msHundreds = document.querySelector('#msHundreds');
 let msTens = document.querySelector('#msTens');
 
+let lock = false;
 
 function timer() {
   let second = 1;
@@ -56,11 +57,22 @@ function timer() {
   }
   loop();
 }
-timer();
 
-document.querySelector('button').addEventListener('click', function() {
-  secondTens.innerHTML = 0;
-  secondOnes.innerHTML = 0;
-  document.querySelector('.digits').classList.remove('redDigit')
-  timer();
+document.querySelector('.start').addEventListener('click', function() {
+  if (lock === false) {
+    secondTens.innerHTML = 0;
+    secondOnes.innerHTML = 0;
+    document.querySelector('.digits').classList.remove('redDigit')
+    timer();
+    lock = true;
+  } 
+})
+
+document.querySelector('.reset').addEventListener('click', function() {
+  if (lock === true) {
+    secondTens.innerHTML = 0;
+    secondOnes.innerHTML = 0;
+    document.querySelector('.digits').classList.remove('redDigit');
+    lock = false;
+  }
 })

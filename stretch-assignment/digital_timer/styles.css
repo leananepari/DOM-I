@@ -7,6 +7,7 @@ body {
 
 .digits {
   box-sizing: border-box;
+  padding-top: 20px;
 }
 
 .digit {
@@ -16,7 +17,7 @@ body {
 }
 
 .redDigit {
-  color: red;
+  color: darkred;
 }
 
 button {
@@ -24,4 +25,10 @@ button {
   height: 30px;
   font-size: 20px;
   margin-top: 10px;
+}
+
+.start {
+  background: darkred;
+  color: white;
+  font-size: 20px;
 }
