@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   "cta": {
-    "h1": "DOM Is Awesome",
+    "h1": "DOM<br> Is<br> Awesome",
     "button": "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -28,7 +28,7 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
+    "address" : "123 Way 456 Street<br>Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
   },
@@ -40,3 +40,95 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+// Selectors
+let nav = document.getElementsByTagName('nav').item(0);
+let headerContent = document.querySelector('.cta');
+let mainContent = document.querySelector('.main-content');
+let contact = document.querySelector('.contact');
+let copyright = document.getElementsByTagName('footer').item(0);
+
+// Iterate over the keys calling corresponding functions
+for (let key in siteContent) {
+  if (key === 'nav') {
+    renderNav(nav, siteContent[key]);
+  }
+  if (key === 'cta') {
+    renderHeaderContent(headerContent, siteContent[key])
+  }
+  if (key === 'main-content') {
+    renderMainContent(mainContent, siteContent[key])
+  }
+  if (key === 'contact') {
+    renderContact(contact, siteContent[key])
+  }
+  if (key === 'footer') {
+    renderCopyright(copyright, siteContent[key])
+  }
+}
+
+function renderNav(selector, data) {
+  let count = 1;
+  for (let i = 0; i < selector.children.length; i++) {
+    selector.children[i].textContent = data['nav-item-' + count.toString()];
+    count++;
+  }
+  let first = document.createElement('a');
+  first.prepend('Prepend');
+  selector.prepend(first);
+
+  let last = document.createElement('a');
+  last.prepend('Append');
+  selector.append(last);
+  selector.querySelectorAll('a').forEach(element => { element.style.color = 'seagreen' });
+}
+
+function renderHeaderContent(selector, data) {
+  for (let i = 0; i < selector.children.length; i++) {
+    if (selector.children[i].className === 'cta-text') {
+      selector.children[i].children[0].innerHTML = data.h1;
+      selector.children[i].children[1].textContent = data.button;
+    } else if (selector.children[i].id === 'cta-img') {
+      selector.children[i].src = "img/header-img.png"
+    }
+  }
+}
+
+function renderMainContent(selector, data) {
+  for (let i = 0; i < selector.children.length; i++) {
+    if (selector.children[i].className === 'top-content') {
+      selector.children[i].children[0].children[0].textContent = data["features-h4"]
+      selector.children[i].children[0].children[1].textContent = data["features-content"]
+  
+      selector.children[i].children[1].children[0].textContent = data["about-h4"]
+      selector.children[i].children[1].children[1].textContent = data["about-content"]
+    } 
+    if (selector.children[i].className === 'middle-img') {
+      selector.children[i].src = data["middle-img-src"];
+    }
+    if (selector.children[i].className === 'bottom-content') {
+      selector.children[i].children[0].children[0].textContent = data["services-h4"];
+      selector.children[i].children[0].children[1].textContent = data["services-content"];
+
+      selector.children[i].children[1].children[0].textContent = data["product-h4"];
+      selector.children[i].children[1].children[1].textContent = data["product-content"];
+
+      selector.children[i].children[2].children[0].textContent = data["vision-h4"];
+      selector.children[i].children[2].children[1].textContent = data["vision-content"];
+    }
+  }
+}
+
+function renderContact(selector, data) {
+  let arr = [];
+  for (let key in data) {
+    arr.push(data[key])
+  }
+  for (let i = 0; i < selector.children.length; i++) {
+    selector.children[i].innerHTML = arr[i];
+  }
+}
+
+function renderCopyright(selector, data) {
+  selector.children[0].textContent = data.copyright
+}
